@@ -24,7 +24,7 @@
     .shell:not([data-layout]) { grid-template-columns: env(viewport-segment-width 0 0) env(viewport-segment-width 1 0); column-gap: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0)); }
   }
   @media (vertical-viewport-segments: 2) {
-    .shell:not([data-layout]) { grid-template-columns: 1fr; grid-template-rows: env(viewport-segment-height 0 0) env(viewport-segment-height 0 1); }
+    .shell:not([data-layout]) { grid-template-columns: 1fr; grid-template-rows: env(viewport-segment-height 0 0) env(viewport-segment-height 0 1); row-gap: calc(env(viewport-segment-top 0 1) - env(viewport-segment-bottom 0 0)); }
   }
   textarea:focus-visible { outline-offset: 3px; }
 </style>
