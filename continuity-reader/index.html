@@ -8,7 +8,9 @@
   :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
   * { box-sizing: border-box; }
   body { margin: 0; }
-  .shell[data-layout="single"] { grid-template-columns: minmax(0, 1fr); }\n  .shell[data-layout="side-by-side"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n  .shell { min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1fr); }
+  .shell[data-layout="single"] { grid-template-columns: minmax(0, 1fr); }
+  .shell[data-layout="side-by-side"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shell { min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1fr); }
   main, aside { padding: 1.2rem; min-width: 0; }
   main { line-height: 1.6; }
   aside { background: color-mix(in srgb, CanvasText 7%, Canvas); border-top: 1px solid color-mix(in srgb, CanvasText 20%, transparent); }
@@ -34,7 +36,8 @@
     <p>A demonstration of adapting layout without remounting the editor or throwing away a draft.</p>
     <p>Read on one display; unfold to place annotations beside the article. Try resizing the window while typing.</p>
     <p>Device posture APIs are optional enhancements. A single-screen browser uses ordinary responsive CSS.</p>
-    <button id="focus-notes">Focus notes</button>\n    <button id="change-layout" type="button" aria-pressed="false">Use side-by-side layout</button>
+    <button id="focus-notes">Focus notes</button>
+    <button id="change-layout" type="button" aria-pressed="false">Use side-by-side layout</button>
   </main>
   <aside aria-labelledby="notes-heading">
     <h2 id="notes-heading">Your notes</h2>
@@ -45,9 +48,18 @@
 </div>
 <script>
   const notes = document.querySelector("#notes");
-  const status = document.querySelector("#status");\n  const shell = document.querySelector(".shell");\n  const switcher = document.querySelector("#change-layout");
+  const status = document.querySelector("#status");
+  const shell = document.querySelector(".shell");
+  const switcher = document.querySelector("#change-layout");
   document.querySelector("#focus-notes").addEventListener("click", () => notes.focus());
-  notes.addEventListener("input", () => { status.textContent = "Draft preserved during this session."; });\n  switcher.addEventListener("click", () => {\n    const sideBySide = switcher.getAttribute("aria-pressed") !== "true";\n    switcher.setAttribute("aria-pressed", String(sideBySide));\n    switcher.textContent = sideBySide ? "Use single-column layout" : "Use side-by-side layout";\n    shell.dataset.layout = sideBySide ? "side-by-side" : "single";\n    status.textContent = "Layout changed without replacing the editor.";\n  });
+  notes.addEventListener("input", () => { status.textContent = "Draft preserved during this session."; });
+  switcher.addEventListener("click", () => {
+    const sideBySide = switcher.getAttribute("aria-pressed") !== "true";
+    switcher.setAttribute("aria-pressed", String(sideBySide));
+    switcher.textContent = sideBySide ? "Use single-column layout" : "Use side-by-side layout";
+    shell.dataset.layout = sideBySide ? "side-by-side" : "single";
+    status.textContent = "Layout changed without replacing the editor.";
+  });
 </script>
 </body>
 </html>
