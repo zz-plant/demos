@@ -21,7 +21,7 @@
     aside { border-top: none; border-inline-start: 1px solid color-mix(in srgb, CanvasText 20%, transparent); }
   }
   @media (horizontal-viewport-segments: 2) {
-    .shell:not([data-layout]) { grid-template-columns: env(viewport-segment-width 0 0) env(viewport-segment-width 1 0); }
+    .shell:not([data-layout]) { grid-template-columns: env(viewport-segment-width 0 0) env(viewport-segment-width 1 0); column-gap: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0)); }
   }
   @media (vertical-viewport-segments: 2) {
     .shell:not([data-layout]) { grid-template-columns: 1fr; grid-template-rows: env(viewport-segment-height 0 0) env(viewport-segment-height 0 1); }
