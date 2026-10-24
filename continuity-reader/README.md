@@ -1,7 +1,15 @@
 # Continuity Reader
 
-Open `index.html` in a browser. Type into the notes textarea and resize between narrow and wide layouts. The same DOM textarea survives, so text, focus, and selection are not lost through responsive reflow. Segment-specific CSS is a progressive enhancement.
+A no-build demonstration of foldable-aware CSS and explicit layout switching that keeps an annotation editor mounted throughout transitions.
 
-This demonstrates a deliberately limited property: continuity from **CSS reflow without DOM replacement**. It does not simulate folding hardware, persist drafts across page reloads, or claim that framework component remounts preserve state.
+## Try it
 
-Test manually on an ordinary phone, wide viewport, and supported foldable browsers. Confirm keyboard, screen reader ordering, and reduced-motion settings as appropriate.
+1. Open `index.html` in a browser and type into **Your notes**.
+2. Click **Use side-by-side layout** and **Use single-column layout** repeatedly. The textarea is not replaced.
+3. Resize across the 740px breakpoint and check that the draft remains.
+4. On a browser supporting Viewport Segments, inspect the layout near the hinge.
+5. Test keyboard navigation, screen-reader reading order, and zoom.
+
+This intentionally uses a small, CSS-first design: viewport-segment rules apply only while automatic layout is selected. An explicit user-selected mode takes precedence. It is a demonstration of avoiding state destruction, **not** a general-purpose state restoration library.
+
+The draft is only retained while this page remains loaded. The demo does not simulate hardware, persist input after reload, or handle framework component remounts. Switching to two columns on narrow displays may reduce usable width: the control is a demonstration override, not a recommended universal default.
