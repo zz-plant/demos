@@ -14,7 +14,6 @@
   aside { background: color-mix(in srgb, CanvasText 7%, Canvas); border-top: 1px solid color-mix(in srgb, CanvasText 20%, transparent); }
   textarea { width: 100%; min-height: 10rem; font: inherit; resize: vertical; }
   button { font: inherit; padding: .5rem .8rem; }
-  .mode { margin-block: 1rem; }
   @media (min-width: 740px) {
     .shell { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     aside { border-top: none; border-inline-start: 1px solid color-mix(in srgb, CanvasText 20%, transparent); }
@@ -25,7 +24,7 @@
   @media (vertical-viewport-segments: 2) {
     .shell { grid-template-columns: 1fr; grid-template-rows: env(viewport-segment-height 0 0) env(viewport-segment-height 0 1); }
   }
-  @media (prefers-reduced-motion: no-preference) { textarea:focus-visible { outline-offset: 3px; } }
+  textarea:focus-visible { outline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -49,10 +48,6 @@
   const status = document.querySelector("#status");
   document.querySelector("#focus-notes").addEventListener("click", () => notes.focus());
   notes.addEventListener("input", () => { status.textContent = "Draft preserved during this session."; });
-  addEventListener("resize", () => {
-    // Do not re-create the input or replace its DOM node on a viewport change.
-    status.textContent = "Viewport changed; the draft and selection remain in place.";
-  });
 </script>
 </body>
 </html>
